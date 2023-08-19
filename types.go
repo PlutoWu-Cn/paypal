@@ -1615,6 +1615,43 @@ type (
 		TotalPages int    `json:"total_pages,omitempty"`
 		Links      []Link `json:"links,omitempty"`
 	}
+
+	ListDisputesParameters struct {
+		StartTime             string `json:"start_time,omitempty"`
+		DisputedTransactionId string `json:"disputed_transaction_id,omitempty"`
+		PageSize              string `json:"page_size,omitempty"`
+		NextPageToken         string `json:"next_page_token,omitempty"`
+		DisputeState          string `json:"dispute_state,omitempty"`
+		UpdateTimeBefore      string `json:"update_time_before,omitempty"`
+		UpdateTimeAfter       string `json:"update_time_after,omitempty"`
+	}
+
+	DisputeAmount struct {
+		CurrencyCode string `json:"currency_code"`
+		Value        string `json:"value"`
+	}
+
+	DisputeAsset struct {
+		AssetSymbol string `json:"asset_symbol"`
+		Quantity    string `json:"quantity"`
+	}
+
+	ListDisputesItem struct {
+		DisputeID     string        `json:"dispute_id"`
+		CreateTime    JSONTime      `json:"create_time"`
+		UpdateTime    JSONTime      `json:"update_time"`
+		Status        string        `json:"status"`
+		Reason        string        `json:"reason"`
+		DisputeState  string        `json:"dispute_state,omitempty"`
+		DisputeAmount DisputeAmount `json:"dispute_amount.omitempty"`
+		Links         []Link        `json:"links,omitempty"`
+		DisputeAsset  DisputeAsset  `json:"dispute_asset,omitempty"`
+	}
+
+	ListDisputesResponse struct {
+		Items []ListDisputesItem `json:"items"`
+		Links []Link             `json:"links,omitempty"`
+	}
 )
 
 // Error method implementation for ErrorResponse struct
